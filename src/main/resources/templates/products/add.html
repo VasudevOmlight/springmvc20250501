@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page.title.add}">Додати товар</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+<div class="container">
+    <div class="header-container">
+        <div class="language-switcher">
+            <a th:href="@{/products/add(language='en')}" th:text="EN"></a> |
+            <a th:href="@{/products/add(language='de')}" th:text="DE"></a> |
+            <a th:href="@{/products/add(language='fr')}" th:text="FR"></a> |
+            <a th:href="@{/products/add(language='uk')}" th:text="UA"></a>
+        </div>
+        <h1><span th:text="#{page.title.add}">Додати новий товар</span></h1>
+
+        <div class="auth-status">
+            <div sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}" class="button sign-in-button">
+                    <span th:text="#{auth.signIn}">Sign In</span>
+                </a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <span th:text="#{auth.welcome}">Welcome</span>, <span sec:authentication="name">User</span>!
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="button sign-out-button">
+                        <span th:text="#{auth.signOut}">Sign Out</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="language-switcher-placeholder"></div> </div>
+
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+    <form th:action="@{/products/add}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name"><span th:text="#{form.label.name}">Назва:</span></label>
+            <input type="text" id="name" th:field="*{name}" class="form-control">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label for="description"><span th:text="#{form.label.description}">Опис:</span></label>
+            <textarea id="description" th:field="*{description}" class="form-control"></textarea>
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label for="price"><span th:text="#{form.label.price}">Ціна:</span></label>
+            <input type="number" step="0.01" id="price" th:field="*{price}" class="form-control">
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label for="amount"><span th:text="#{form.label.amount}">Кількість:</span></label>
+            <input type="number" id="amount" th:field="*{amount}" class="form-control">
+            <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label for="imageFiles"><span th:text="#{form.label.images}">Зображення (JPG/PNG, необов’язково):</span></label>
+            <input type="file" id="imageFiles" name="imageFiles" multiple accept="image/jpeg,image/png" class="form-control">
+        </div>
+        <button type="submit" class="button" th:text="#{form.button.add}">Додати</button>
+        <a th:href="@{/products}" class="button cancel" th:text="#{form.button.back}">Повернутися до списку</a>
+    </form>
+</div>
+</body>
+</html>

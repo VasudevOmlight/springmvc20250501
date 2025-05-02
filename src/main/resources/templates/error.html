@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{page.title.error}">Помилка</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+<div class="container">
+  <div class="header-container">
+    <div class="language-switcher">
+      <a th:href="@{/products(language='en')}" th:text="EN"></a> |
+      <a th:href="@{/products(language='de')}" th:text="DE"></a> |
+      <a th:href="@{/products(language='fr')}" th:text="FR"></a> |
+      <a th:href="@{/products(language='uk')}" th:text="UA"></a>
+    </div>
+    <h1><span th:text="#{page.title.error}">Помилка</span></h1>
+
+    <div class="auth-status">
+      <div sec:authorize="!isAuthenticated()">
+        <a th:href="@{/login}" class="button sign-in-button">
+          <span th:text="#{auth.signIn}">Sign In</span>
+        </a>
+      </div>
+      <div sec:authorize="isAuthenticated()">
+        <span th:text="#{auth.welcome}">Welcome</span>, <span sec:authentication="name">User</span>!
+        <form th:action="@{/logout}" method="post" style="display: inline;">
+          <button type="submit" class="button sign-out-button">
+            <span th:text="#{auth.signOut}">Sign Out</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="language-switcher-placeholder"></div> </div>
+
+  <p th:text="${error}"></p>
+  <a th:href="@{/products}" class="button" th:text="#{form.button.back}">Повернутися до списку товарів</a>
+</div>
+</body>
+</html>

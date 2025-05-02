@@ -1,0 +1,422 @@
+/* Основні стилі для всього тіла сторінки */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Світло-сірий фон */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Стилі для основного контейнера вмісту */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для заголовка сторінки та перемикача мови */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Стилі для заголовків першого рівня */
+h1 {
+    color: #1e90ff;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+/* Стилі для блоку перемикача мови */
+.language-switcher {
+    gap: 5px;
+    align-items: center;
+}
+
+/* Стиль для посилань в перемикачі мови */
+.language-switcher a {
+    text-decoration: none;
+    color: #1e90ff;
+    font-weight: bold;
+}
+
+/* Стиль для посилань в перемикачі мови при наведенні */
+.language-switcher a:hover {
+    text-decoration: underline;
+}
+
+/* Додатковий елемент для балансування в header-container */
+.language-switcher-placeholder {
+    width: 0;
+    min-width: 50px; /* Приблизна ширина для балансу */
+}
+
+
+/* Контейнер для пошуку та кнопки "Додати товар" (в list.html) */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+/* Стилі поля вводу пошуку */
+#searchInput {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #1e90ff;
+    border-radius: 4px;
+}
+
+/* Стилі для кнопки "Додати товар" у верхній частині */
+.button.add-button-top {
+    margin: 0;
+}
+
+
+/* Стилі для таблиць */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    max-height: 550px;
+    display: block;
+    overflow-y: auto;
+}
+
+/* Стилі для комірок заголовків та даних таблиці */
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+/* Стилі для комірок заголовків таблиці */
+table th {
+    background-color: #ffd700;
+    color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 12px;
+    border-radius: 0;
+}
+
+/* Стилі для рядків таблиці при наведенні курсора */
+table tr:hover {
+    background-color: #e6f0fa;
+}
+
+/* Стилі для клікабельних елементів у заголовках таблиці */
+.clickable-header-content {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #1e90ff;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin: 0;
+}
+
+/* Стилі для клікабельних елементів при наведенні курсора */
+.clickable-header-content:hover {
+    background-color: #e6f0fa;
+    border-color: #4682b4;
+}
+
+
+/* Стилі для таблиці підсумків */
+.summary-table {
+    width: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: auto;
+    max-height: none;
+    display: table;
+    overflow-y: visible;
+    border: 1px solid #1e90ff;
+    border-collapse: collapse;
+}
+
+/* Стилі для комірок заголовків та даних таблиці підсумків */
+.summary-table th, .summary-table td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Стилі для комірок заголовків таблиці підсумків */
+.summary-table th {
+    background-color: #e6f0fa;
+    color: #333;
+    position: static;
+    cursor: default;
+}
+
+/* Стиль для заголовка таблиці підсумків */
+.summary-title {
+    color: #1e90ff;
+}
+
+
+/* Стилі для кнопок (загальні) */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1e90ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Додано для сумісності стилів кнопок у login-container */
+    text-align: center;
+}
+
+/* Стилі для кнопки "Скасувати" */
+.button.cancel {
+    background-color: #d3d3d3;
+    color: #333;
+}
+
+/* Стилі для кнопки "Повернутися" (жовта) - ЗАГАЛЬНИЙ КЛАС */
+.button.yellow {
+    background-color: #ffd700; /* Золотистий жовтий */
+    color: #333; /* Темний текст для контрасту */
+    border: none;
+}
+
+/* Стилі для кнопок при наведенні (загальні) */
+.button:hover {
+    background-color: #4682b4;
+}
+
+/* Стилі для кнопки "Скасувати" при наведенні */
+.button.cancel:hover {
+    background-color: #b0b0b0;
+}
+
+/* Стилі для кнопки "Повернутися" (жовта) при наведенні */
+.button.yellow:hover {
+    background-color: #ffcc00; /* Темніший жовтий при наведенні */
+}
+
+
+/* Стилі для груп полів форми */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Стилі для міток полів форми */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Стилі для полів вводу форми */
+.form-control {
+    width: calc(100% - 18px);
+    padding: 8px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+}
+
+/* Стилі для багаторядкових полів вводу (textarea) */
+textarea.form-control {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Стиль для статичного відображення ID товару (на edit.html) */
+.form-control-static {
+    display: inline-block;
+    padding: 8px;
+    margin-bottom: 0;
+    min-height: 34px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    background-color: #eee;
+    width: calc(100% - 18px);
+    cursor: not-allowed;
+    vertical-align: middle;
+}
+
+/* Стилі для повідомлень про помилки валідації */
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+/* Стилі для повідомлень про успіх */
+.message {
+    color: green;
+    background-color: #e0ffe0;
+    border: 1px solid green;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* Стилі для повідомлень про помилки */
+.error-message {
+    color: red;
+    background-color: #ffe0e0;
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* Стилі для секції деталей товару на сторінці перегляду */
+.product-details p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+/* Стилі для жирного тексту в деталях товару */
+.product-details strong {
+    color: #333;
+}
+
+/* Стилі для повідомлення про відсутність зображень */
+.no-images {
+    color: #555;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Стилі для галереї зображень на сторінках перегляду та редагування */
+.image-gallery {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+/* Стилі для заголовка секції зображень */
+.image-gallery h3 {
+    margin-bottom: 15px;
+    color: #1e90ff;
+}
+
+/* Контейнер для галереї зображень */
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Контейнер для великого зображення */
+.large-image-container {
+    width: 100%;
+    max-width: 600px;
+    height: 220px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+/* Стилі для великого зображення */
+.large-image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Контейнер для мініатюр зображень */
+.thumbnail-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 10px 0;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Стилі для мініатюр зображень */
+.thumbnail-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+    background-color: #eee;
+}
+
+/* Стилі для мініатюр при наведенні */
+.thumbnail-image:hover {
+    border-color: #aaa;
+    transform: scale(1.05);
+}
+
+/* Стилі для активної (вибраної) мініатюри */
+.thumbnail-image.active {
+    border-color: #1e90ff;
+    transform: scale(1.05);
+}
+
+/* Стилі для кнопки видалення зображення на сторінці редагування */
+.button.delete-image-button {
+    background-color: #dc3545;
+    color: white;
+    margin-top: 10px;
+}
+.button.delete-image-button:hover {
+    background-color: #c82333;
+}
+
+/* Додано стилі для елементів всередині login-container для вирівнювання кнопок */
+/* Ці стилі перенесені з секції <style> у login.html для централізації стилів */
+.login-container button[type="submit"],
+.login-container .button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: block;
+    margin-top: 10px; /* Відступ між кнопками */
+}
+/* Стилі для кнопки Sign In (колір) */
+.login-container button[type="submit"] {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+}
+.login-container button[type="submit"]:hover {
+    background-color: #4682b4;
+}
+/* Стилі для кнопки Повернутися (жовта) - НОВИЙ КЛАС в межах контейнера login */
+.login-container .button.yellow {
+    background-color: #ffd700; /* Золотистий жовтий */
+    color: #333; /* Темний текст для контрасту */
+    border: none;
+}
+.login-container .button.yellow:hover {
+    background-color: #ffcc00; /* Темніший жовтий при наведенні */
+}

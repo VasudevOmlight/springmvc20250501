@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{page.title.view}">Перегляд товару</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+<div class="container">
+  <div class="header-container">
+    <div class="language-switcher">
+      <a th:href="@{/products/view/{id}(id=${product.id}, language='en')}" th:text="EN"></a> |
+      <a th:href="@{/products/view/{id}(id=${product.id}, language='de')}" th:text="DE"></a> |
+      <a th:href="@{/products/view/{id}(id=${product.id}, language='fr')}" th:text="FR"></a> |
+      <a th:href="@{/products/view/{id}(id=${product.id}, language='uk')}" th:text="UA"></a>
+    </div>
+    <h1><span th:text="#{page.title.view}">Деталі товару</span></h1>
+
+    <div class="auth-status">
+      <div sec:authorize="!isAuthenticated()">
+        <a th:href="@{/login}" class="button sign-in-button">
+          <span th:text="#{auth.signIn}">Sign In</span>
+        </a>
+      </div>
+      <div sec:authorize="isAuthenticated()">
+        <span th:text="#{auth.welcome}">Welcome</span>, <span sec:authentication="name">User</span>!
+        <form th:action="@{/logout}" method="post" style="display: inline;">
+          <button type="submit" class="button sign-out-button">
+            <span th:text="#{auth.signOut}">Sign Out</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="language-switcher-placeholder"></div> </div>
+
+  <div class="product-details">
+    <p><strong><span th:text="#{table.header.id}">ID товару:</span></strong> <span th:text="${product.id}"></span></p>
+    <p><strong><span th:text="#{table.header.name}">Назва:</span></strong> <span th:text="${product.name}"></span></p>
+    <p><strong><span th:text="#{table.header.description}">Опис:</span></strong> <span th:text="${product.description}"></span></p>
+    <p><strong><span th:text="#{table.header.price}">Ціна:</span></strong> <span th:text="${#numbers.formatDecimal(product.price, 1, 'COMMA', 2, 'POINT')}"></span></p>
+    <p><strong><span th:text="#{table.header.amount}">Кількість:</span></strong> <span th:text="${product.amount}"></span></p>
+    <div class="image-gallery">
+      <h3><span th:text="#{form.label.images}">Зображення:</span></h3>
+      <div th:if="${product.images == null || product.images.isEmpty()}" class="no-images" th:text="#{no.images}">
+        Зображень немає
+      </div>
+      <div th:unless="${product.images == null || product.images.isEmpty()}" class="gallery-container">
+        <div class="large-image-container">
+          <img id="largeImage"
+               th:src="${product.images[0].imagePath}"
+               alt="Selected product image"
+               class="large-image">
+        </div>
+        <div class="thumbnail-container">
+          <img th:each="image, iterStat : ${product.images}"
+               th:src="${image.imagePath}"
+               th:alt="'Product image ' + ${iterStat.count}"
+               th:class="'thumbnail-image' + (${iterStat.first} ? ' active' : '')" th:data-large-src="${image.imagePath}"
+               onclick="displayImage(this)">
+        </div>
+      </div>
+    </div>
+  </div>
+  <a th:href="@{/products}" class="button" th:text="#{form.button.back}">Назад до списку</a>
+</div>
+<script>
+  function displayImage(thumbnailElement) {
+    const largeImage = document.getElementById('largeImage');
+    const newSrc = thumbnailElement.getAttribute('data-large-src');
+    largeImage.src = newSrc;
+    const thumbnails = document.querySelectorAll('.thumbnail-image');
+    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    thumbnailElement.classList.add('active');
+  }
+</script>
+</body>
+</html>

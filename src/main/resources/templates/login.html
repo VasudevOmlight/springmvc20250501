@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{auth.loginPageTitle}">Вхід</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        /* Додаткові стилі для форми входу */
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h1 {
+            text-align: center;
+            color: #1e90ff;
+            margin-bottom: 20px;
+        }
+        .login-container .form-group {
+            margin-bottom: 15px;
+        }
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* --- УТОЧНЕНІ СТИЛІ ДЛЯ КНОПОК В МЕЖАХ login-container --- */
+
+        /* Загальні стилі для форми та посилання, які мають поводитись як кнопки */
+        /* Застосовуємо ці стилі до обох елементів */
+        .login-container form button[type="submit"], /* Стилі для кнопки Submit всередині форми */
+        .login-container .button.yellow { /* Стилі для посилання з класами button yellow */
+            /* Box Model & Sizing */
+            width: 100%; /* Займають всю доступну ширину батьківського елемента */
+            display: block; /* Робимо їх блочними для коректної поведінки width: 100% */
+            box-sizing: border-box; /* Включаємо padding та border у загальну ширину */
+            padding: 10px 20px; /* Застосовуємо однаковий внутрішній відступ */
+            margin: 0; /* Скидаємо стандартні зовнішні відступи */
+            border: none; /* Скидаємо стандартні рамки */
+            border-radius: 4px; /* однаковий радіус кутів */
+
+            /* Typography & Appearance */
+            font-size: 1.1em;
+            text-align: center;
+            text-decoration: none; /* Прибираємо підкреслення у посилання */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Додаємо ВЕРХНІЙ відступ тільки для ДРУГОЇ кнопки (повернення) */
+        .login-container .button.yellow {
+            margin-top: 10px; /* Відступ між кнопками */
+        }
+
+        /* Стилі кольору та фону для кнопки Sign In */
+        .login-container form button[type="submit"] {
+            background-color: #1e90ff;
+            color: white;
+        }
+        .login-container form button[type="submit"]:hover {
+            background-color: #4682b4;
+        }
+
+        /* Стилі кольору та фону для кнопки Повернутися (жовта) */
+        .login-container .button.yellow {
+            background-color: #ffd700; /* Золотистий жовтий */
+            color: #333; /* Темний текст для контрасту */
+        }
+        .login-container .button.yellow:hover {
+            background-color: #ffcc00; /* Темніший жовтий при наведенні */
+        }
+
+        /* --- КІНЕЦЬ УТОЧНЕНИХ СТИЛІВ ДЛЯ КНОПОК --- */
+
+
+        .login-container .error-message {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .login-container .language-switcher {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-container .language-switcher a {
+            text-decoration: none;
+            color: #1e90ff;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        .login-container .language-switcher a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="language-switcher">
+        <a th:href="@{/login(language='en')}" th:text="EN"></a> |
+        <a th:href="@{/login(language='de')}" th:text="DE"></a> |
+        <a th:href="@{/login(language='fr')}" th:text="FR"></a> |
+        <a th:href="@{/login(language='uk')}" th:text="UA"></a>
+    </div>
+    <h1 th:text="#{auth.loginTitle}">Вхід</h1>
+
+    <div th:if="${param.error}" class="error-message">
+        <span th:text="#{auth.invalidCredentials}">Невірний логін або пароль.</span>
+    </div>
+
+    <div th:if="${param.logout}" class="message">
+        <span th:text="#{auth.loggedOut}">Ви успішно вийшли.</span>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username" th:text="#{auth.username}">Логін:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password" th:text="#{auth.password}">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" th:text="#{auth.loginButton}">Увійти</button>
+    </form>
+
+    <a th:href="@{/products}" class="button yellow" th:text="#{form.button.back}">Повернутися до списку</a>
+
+
+</div>
+</body>
+</html>
